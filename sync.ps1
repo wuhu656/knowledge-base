@@ -1,17 +1,25 @@
 ﻿param(
   [string]$Message = ""
 )
-$kb = "C:\Users\Administrator\knowledge-base"
+$kb = "E:\knowledge-base"
 if ($Message -eq "") { $Message = "knowledge-base sync " + (Get-Date -Format "yyyy-MM-dd HH:mm") }
 Set-Location $kb
+
+git pull --ff-only 2>&1 | Out-Null
+
 git add -A | Out-Null
 $changed = git diff --cached --name-only
 if (-not $changed) {
   Write-Host "没有改动，跳过提交。" -ForegroundColor Green
-  git pull --ff-only 2>&1
-  if ($?) { git push 2>&1 }
+  git push 2>&1
   exit 0
 }
-Write-Host "提交: $Message"
-git commit -m $Message
+
+git commit -m $Message 2>&1 | Out-Null
 git push 2>&1
+if (-not $?) {
+  Write-Host "推送被拒绝，先拉取再重试……" -ForegroundColor Yellow
+  git pull --rebase 2>&1
+  git push 2>&1
+}
+Write-Host "同步完成。" -ForegroundColor Green

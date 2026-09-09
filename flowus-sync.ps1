@@ -1,7 +1,7 @@
 ﻿param(
   [string]$Token = "",
   [string[]]$PageIds = @(),
-  [string]$OutDir = "C:\Users\Administrator\knowledge-base\notes"
+  [string]$OutDir = "E:\knowledge-base\notes"
 )
 if ($Token -ne "") { $env:FLOWUS_TOKEN = $Token }
 if ($PageIds.Count -eq 0) {
