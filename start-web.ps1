@@ -1,0 +1,2 @@
+Set-Location "E:\knowledge-base"
+Start-Process -FilePath "C:\Users\Administrator\AppData\Roaming\npm\node_modules\opencode-ai\bin\opencode.exe" -ArgumentList "web","--hostname","0.0.0.0","--port","8080" -WindowStyle Hidden
