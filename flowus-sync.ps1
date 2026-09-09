@@ -1,4 +1,4 @@
-param(
+﻿param(
   [string]$Token = "",
   [string[]]$PageIds = @(),
   [string]$OutDir = "C:\Users\Administrator\knowledge-base\notes"

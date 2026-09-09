@@ -1,4 +1,4 @@
-param(
+﻿param(
   [string]$Message = ""
 )
 $kb = "C:\Users\Administrator\knowledge-base"
